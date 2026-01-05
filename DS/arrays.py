@@ -1,5 +1,4 @@
-# Arrays - Two Pointer Technique
-# Day 1: Opposite Ends Pattern (Left & Right Pointers)
+# Arrays - Two Pointer Technique (Opposite Ends Pattern)
 
 from typing import List, Optional
 def two_sum_sorted(arr: List[int], target: int) -> Optional[tuple]:

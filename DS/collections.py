@@ -1,26 +1,25 @@
-# Collections Module - Deque
-# Day 1: Sliding Window with Deque
+# Collections Module - Deque & OrderedDict
 
-from collections import deque
-
-
+from collections import deque, OrderedDict
 """
 DEQUE (Double-Ended Queue)
 ===========================
 - Fast O(1) append/pop from BOTH ends
 - maxlen: auto-removes oldest when full
 - Perfect for sliding window problems
+
+ORDEREDDICT
+===========
+- Maintains insertion order (Python 3.7+ regular dict also does this)
+- Useful for move_to_end() method - reorder items
 """
 
 
 def sliding_window_example():
     """
-    Real-world: Moving average calculation (stock prices, metrics)
+     Moving average calculation (stock prices, metrics)
     """
-    print("\n" + "=" * 50)
     print("Sliding Window - Moving Average")
-    print("=" * 50)
-    
     prices = [100, 102, 98, 105, 110, 108, 115, 112]
     window_size = 3
     
@@ -40,20 +39,54 @@ def sliding_window_example():
     print(f"\nMoving averages: {[f'{x:.2f}' for x in moving_averages]}")
 
 
-# ============================================
-# DEMO
-# ============================================
+def recent_items_example():
+    """
+    Recently accessed items (e.g., recent files, recent searches)
+    """
+    print("\nRecently Accessed Items")
+    
+    recent = OrderedDict()
+    
+    # Access items
+    items = ["file1.txt", "file2.py", "file1.txt", "file3.md", "file2.py"]
+    
+    print(f"Access sequence: {items}\n")
+    
+    for item in items:
+        if item in recent:
+            recent.move_to_end(item)  # Move to most recent
+        else:
+            recent[item] = True
+        
+        # Keep only last 3
+        if len(recent) > 3:
+            oldest = next(iter(recent))
+            recent.pop(oldest)
+        
+        print(f"Accessed '{item}' → Recent: {list(recent.keys())}")
+    
+    print(f"\nFinal recent items (newest first): {list(reversed(recent.keys()))}")
+
 
 if __name__ == "__main__":
-    print("\n" + "█" * 50)
-    print("DEQUE - Sliding Window")
-    print("█" * 50)
+    print("=" * 50)
+    print("COLLECTIONS MODULE")
+    print("=" * 50)
     
+    print("\n1. DEQUE - Sliding Window")
+    print("-" * 50)
     sliding_window_example()
     
-    print("\n" + "█" * 50)
-    print("✅ Key Takeaway:")
-    print("   • deque with maxlen: perfect for sliding window")
-    print("   • O(1) append, auto-removes oldest element")
-    print("█" * 50 + "\n")
+    print("\n" + "=" * 50)
+    print("2. ORDEREDDICT - Recent Items")
+    print("-" * 50)
+    recent_items_example()
+    
+    print("\n" + "=" * 50)
+    print("✅ Key Takeaways:")
+    print("   • deque: perfect for sliding window, O(1) operations")
+    print("   • OrderedDict: track recent items with move_to_end()")
+    print("=" * 50)
+
+ 
 

@@ -1,6 +1,6 @@
-# Collections Module - Deque & OrderedDict
+# Collections Module - Deque, OrderedDict & Counter
 
-from collections import deque, OrderedDict
+from collections import deque, OrderedDict, Counter
 """
 DEQUE (Double-Ended Queue)
 ===========================
@@ -12,6 +12,12 @@ ORDEREDDICT
 ===========
 - Maintains insertion order (Python 3.7+ regular dict also does this)
 - Useful for move_to_end() method - reorder items
+
+COUNTER
+=======
+- Specialized dict for counting hashable objects
+- Automatically counts frequency
+- Has useful methods: most_common(), elements()
 """
 
 
@@ -68,25 +74,46 @@ def recent_items_example():
     print(f"\nFinal recent items (newest first): {list(reversed(recent.keys()))}")
 
 
+def word_frequency_example():
+    print("\nWord & Letter Frequency Analysis")
+    
+    text = "python is great python is easy to learn python programming"
+    
+    # Word frequency
+    words = text.split()
+    word_count = Counter(words)
+    
+    print(f"\nText: '{text}'")
+    print(f"\nWord Frequency:")
+    for word, count in word_count.most_common():
+        print(f"  '{word}': {count}")
+    
+    # Letter frequency
+    letters = [char for char in text if char.isalpha()]
+    letter_count = Counter(letters)
+    
+    print(f"\nTop 5 Most Common Letters:")
+    for letter, count in letter_count.most_common(5):
+        print(f"  '{letter}': {count}")
+    
+    # Total unique words and letters
+    print(f"\nUnique words: {len(word_count)}")
+    print(f"Unique letters: {len(letter_count)}")
+
+
 if __name__ == "__main__":
-    print("=" * 50)
     print("COLLECTIONS MODULE")
-    print("=" * 50)
-    
     print("\n1. DEQUE - Sliding Window")
-    print("-" * 50)
     sliding_window_example()
-    
-    print("\n" + "=" * 50)
-    print("2. ORDEREDDICT - Recent Items")
-    print("-" * 50)
+    print("\n2. ORDEREDDICT - Recent Items")
     recent_items_example()
-    
-    print("\n" + "=" * 50)
-    print("✅ Key Takeaways:")
+    print("\n3. COUNTER - Word & Letter Frequency")
+    word_frequency_example()
+    print("\n Key Takeaways:")
     print("   • deque: perfect for sliding window, O(1) operations")
     print("   • OrderedDict: track recent items with move_to_end()")
-    print("=" * 50)
+    print("   • Counter: easy frequency counting with most_common()")
+   
 
  
 

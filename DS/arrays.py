@@ -63,6 +63,33 @@ def reverse_array_inplace(arr: List[int]) -> None:
         left += 1
         right -= 1
 
+
+def container_with_most_water(heights: List[int]) -> int:
+    """
+    Find max area that can be formed between two lines.
+    Time: O(n), Space: O(1)
+    
+    Logic: Start with widest container. Move pointer with smaller height
+           inward (only way to potentially get larger area).
+    """
+    left, right = 0, len(heights) - 1
+    max_area = 0
+    
+    while left < right:
+        # Area = width * min_height
+        width = right - left
+        height = min(heights[left], heights[right])
+        area = width * height
+        max_area = max(max_area, area)
+        
+        # Move pointer with smaller height
+        if heights[left] < heights[right]:
+            left += 1
+        else:
+            right -= 1
+    
+    return max_area
+
 if __name__ == "__main__":
     print("=" * 50)
     print("TWO POINTER - Opposite Ends Pattern")
@@ -84,5 +111,11 @@ if __name__ == "__main__":
     print(f"\n3. Reverse Array: {arr}")
     reverse_array_inplace(arr)
     print(f"   Result: {arr}")
+    
+    # Container With Most Water
+    heights = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+    result = container_with_most_water(heights)
+    print(f"\n4. Container With Most Water: {heights}")
+    print(f"   Result: max area = {result}")
     
   

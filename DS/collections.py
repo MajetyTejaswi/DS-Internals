@@ -110,10 +110,10 @@ if __name__ == "__main__":
     print("\n3. COUNTER - Word & Letter Frequency")
     word_frequency_example()
     print("\n Key Takeaways:")
-    print("   • deque: perfect for sliding window, O(1) operations")
-    print("   • OrderedDict: track recent items with move_to_end()")
-    print("   • Counter: easy frequency counting with most_common()")
+    print("deque: perfect for sliding window, O(1) operations")
+    print("OrderedDict: track recent items with move_to_end()")
+    print("Counter: easy frequency counting with most_common()")
    
 
- 
+
 
